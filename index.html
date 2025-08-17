@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anime Actu</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=CA-PUB-XXXXXXX"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <h1>🔥 Anime Actu</h1>
+    <p>Toutes les dernières news animés et mangas</p>
+  </header>
+
+  <main>
+    <!-- Section News -->
+    <section id="anime-news">
+      <h2>📰 Dernières news animés</h2>
+      <ul id="news-list">Chargement des news...</ul>
+    </section>
+
+    <!-- Section Avis -->
+    <section id="avis">
+      <h2>💬 Vos avis & notes</h2>
+      <div id="disqus_thread"></div>
+    </section>
+
+    <!-- Section Monétisation -->
+    <section id="support">
+      <h2>💖 Soutenir Anime Actu</h2>
+      <p>Vous aimez notre site ? Aidez-nous à continuer en nous soutenant !</p>
+      <a href="https://patreon.com/TONCOMPTE" target="_blank">
+        <button>Soutenir sur Patreon ❤️</button>
+      </a>
+    </section>
+
+    <!-- Exemple de lien affilié -->
+    <section id="affiliation">
+      <h2>🛒 Bons plans animés</h2>
+      <p>
+        <a href="https://www.amazon.fr/dp/XXXXXXXX?tag=TONCODEAFFILIE" target="_blank">
+          Acheter One Piece Tome 1 📚
+        </a>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Anime Actu | Site créé avec ❤️</p>
+  </footer>
+
+  <!-- BOT DE CONTENU -->
+  <script>
+  async function loadNews() {
+    let url = "https://www.animenewsnetwork.com/all/rss.xml";
+    let response = await fetch("https://api.rss2json.com/v1/api.json?rss_url=" + url);
+    let data = await response.json();
+
+    let list = document.getElementById("news-list");
+    list.innerHTML = "";
+
+    data.items.slice(0, 5).forEach(article => {
+      let li = document.createElement("li");
+      li.innerHTML = `<a href="${article.link}" target="_blank">${article.title}</a>`;
+      list.appendChild(li);
+    });
+  }
+  loadNews();
+  </script>
+
+  <!-- BOT AVIS (Disqus) -->
+  <script>
+  (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://EXEMPLE.disqus.com/embed.js';  // ⚠️ remplace EXEMPLE par ton identifiant Disqus
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+  </script>
+</body>
+</html>
